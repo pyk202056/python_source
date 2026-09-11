@@ -1,4 +1,4 @@
--- 관계형재이터베이스(RDBMS)의 이해
+-- 관계형 데이터베이스(RDBMS)의 이해
 
 -- 테이블 정규화 이해
 
@@ -1887,7 +1887,8 @@ CREATE OR REPLACE FUNCTION fuexam2 (NO INT) RETURNS int
 
 BEGIN
 DECLARE gogek_age INT;
-SELECT DATE_FORMAT(NOW(),'%Y') - (SUBSTR(gogek_jumin, 1, 2) + 1900) INTO gogek_age FROM gogek WHERE gogek_no = NO; 
+SELECT DATE_FORMAT(NOW(),'%Y') - (SUBSTR(gogek_jumin, 1, 2) + 1900) INTO gogek_age 
+FROM gogek WHERE gogek_no = NO; 
 
 RETURN gogek_age;
 END $$ 
