@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Internal 방식 스타일 지정 선언 -->
+    <style type="text/css">
+        /* css 주석  */
+        h1{    /* 선택자 : tag명 */
+            font-size: 50px;font-family: 궁서;color: red;
+        }
+        h2, b {font-size: 8px; color: blue;}
+
+        .c1 {  /* 선택자 : class명 */
+            color: silver; 
+            font-family: 돋움,궁서,serif,"Time New Roman";
+        }
+
+        #myid1{    /* 선택자 : id명 */
+            color: cyan; font-style: italic;
+        }
+    </style>
+
+    <!-- External 스타일 적용 -->
+    <link rel="stylesheet" type="text/css" href="css/pro7.css" />
+</head>
+<body>
+<pre>
+CSS를 적용하는 방법 : CSS 스타일을 적용할 때에는 세 가지 방법을 사용할 수 있다.
+- 인라인 스타일(Inline style)
+- 내부 스타일 시트(Internal style)
+- 외부 스타일 시트(External style)  CSS 파일을 따로 작성하고,  그 파일을 link 하여 사용.
+선택자(selector)
+- 선택자란 CSS로 UI 의 어느 부분을 디자인할지, 즉 표현할 대상이 되는 부분을 말한다.
+- 선택자의 종류는 type선택자, id선택자, class선택자, 전체선택자, 하위선택자, 자식선택자...    
+</pre> 
+<hr>
+*** <b>css</b> <i>적용</i>하기 ***<br>
+<span style="font-size: 30px;color: aqua;">인라인 방식</span>(해당 요소에 스타일 직접 지정)
+<h1>인터널 방식(내부에서만 별도 스타일 지정)</h1>
+<h2>안녕하세요 h2 tag입니다</h2>
+<h2 style="color: yellow;">안녕하세요 h2 tag입니다</h2>
+<b>스타일 연습 중</b>
+<h1>반가워요</h1>
+
+<p class="c1">클래스 사용1 - class 명은 중복 가능</p>
+<h2 class="c1">안녕하세요 h2 tag입니다 : 클래스 사용</h2>
+<p id="myid1">아이디 사용 - id 명은 중복 불가</p>
+<div id="myid2">아이디 사용 - div에 적용</div>
+
+<p>* 입력 양식 작성 *</p>
+<form>
+    <table>
+        <tr>
+            <td>아이디 : </td>
+            <td><input type="text" name="id"></td>
+        </tr>
+        <tr>
+            <td>비밀번호 : </td>
+            <td><input type="text" name="pwd"></td>
+        </tr>
+    </table>
+</form>
+<br>
+<a href="https://naver.com">네이버</a><br>
+<a href="https://kbs.co.kr">kbs</a> 공영방송<br>
+<hr>
+<b>b tag</b>
+<div><b>div-b tag</b></div>
+<div><span><b>div-span-b tag</b></span></div>
+<div><b id="hi">div-b tag : id-hi</b></div>
+<div><b class="hello">div-b tag : class-hello</b></div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>table tag (표) 사용</h3>
+    <table border="1">  <!-- W3C는 border="1"만 허용. 스타일은 css가 담당하도록 함 -->
+        <tr>
+            <th>번호</th><th>이름</th><th>주소</th>   <!-- th 태그는 bold, align:center -->
+        </tr>
+        <tr>
+            <td width="100">1</td><td>신기해</td><td>강남구 서초1동</td>
+        </tr>
+        <tr>
+            <td>2</td><td></td><td></td>
+        </tr>
+    </table>
+    <br>
+    <table border="1">
+        <tr>
+            <td width="200" colspan="2">a</td>  <!-- 열 병합 -->
+            <td width="150">b</td>
+            <td width="180" rowspan="3">c</td>  <!-- 행 병합 -->
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td> <!-- 하나의 td를 cell이라 함. cell 안에 table 작성 가능 -->
+                <table border="3">
+                    <tr>
+                        <td>python</td>
+                        <td>MariaDB</td>
+                    </tr><tr>
+                        <td>C</td>
+                        <td>JAVA</td>
+                    </tr>
+                </table>
+            </td>
+            <td>kor</td>
+            <td>eng</td>
+        </tr>
+    </table>
+    <hr>
+    -- form tag (서버에 전달용 입력 양식 작성) --
+    <form action="aa.py" method="get">
+        1. 이름:<input type="text" name="name" id="irum" size="30"><br>
+        2. 나이:<input type="text" name="age" value="23" readonly><br>
+        3. 비밀번호:<input type="password" name="pwd"><br>
+        4. 메세지 : <textarea name="msg" cols="50" rows="5">멀티라인 텍스트 박스</textarea>
+        <br>
+        5. 학년 : 
+        <input type="radio" name="hak" value="1">1학년&nbsp;&nbsp;
+        <input type="radio" name="hak" value="2" checked>2학년&nbsp;&nbsp;
+        <input type="radio" name="hak" value="3">3학년<br>
+        6. 성별 :
+        <input type="radio" name="gender" value="남" checked>남성&nbsp;&nbsp;
+        <input type="radio" name="gender" value="여">여성<br>
+        7. 과목 : 
+        <input type="checkbox" name="gwa" value="python">파이썬&nbsp;&nbsp;
+        <input type="checkbox" name="gwa" value="mariadb">마리아&nbsp;&nbsp;
+        <input type="checkbox" name="gwa" value="oracle">오라클<br>
+        8. 지역 :
+        <select name="addr" >  <!-- multiple -->
+            <option value="c" selected>시청</option>
+            <option value="j">종로</option>
+            <option value="k">강남</option>
+        </select><br>   
+        9. 파일 선택 : <input type="file" name="fname"><br>
+        10. 숨김 : <input type="hidden" name="jumsu" value="90" >
+        <br><br>
+        <input type="submit" value="전송 확인" />  <!-- 서버로 자료 전송-->
+        <input type="reset" value="입력 취소" />   <!-- 입력 취소(초기화) -->
+    </form>
+</body>
+</html>

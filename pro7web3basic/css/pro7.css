@@ -1,0 +1,23 @@
+/* 별도의 css 파일 : 여러 개의 html 문서에서 스타일 적용 가능 */
+#myid2{
+    background-color: yellow;
+    color: red;
+    font-size: 20px;
+}
+
+/* 동적 선택자 */
+/* input:focus{background-color: yellow;} */
+/* input:focus{background-color: #ffff00;} */  
+/* input:focus{background-color: rgb(255,255,0);} */
+input:focus{background-color: rgb(100%,100%,0%);}
+
+a:link{text-decoration: none;}
+a:hover{color: orange; font-size: 30px;}
+
+/* 부모, 자식, 자손, 클래스, 아이디 선택 */
+b{font-size: 8px;}
+/* div,b   div b   div > b   3개는 의미가 다름  */
+div b{font-size: 16px;}  /* div tag 자손들 모두 해당 */
+div > b{font-size: 20px;color:red;}  /* div tag 직계 자식만 해당 */
+div b#hi{font-size: 30px;color:green;}
+div b.hello{font-size: 50px;}
