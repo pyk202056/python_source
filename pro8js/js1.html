@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    ** <b>자바스크립트</b> : Client side script ** <br>
+
+    <script>
+    window.document.write("환영합니다. JS 세상");   // 한 줄 주석. 브라우저 화면으로 출력해 
+    document.write("<h2>브라우저에 문자열 출력</h2>");
+    
+    console.log("개발자를 위해 표준 출력 장치로 출력 - 기본 화면에는 보이지 않음");
+    </script>
+    다시 html로 나옴
+    <br>
+    <script>
+    document.write("<b>굵은 문자열 출력</b><br>");
+    document.write("<i>이텔릭체 문자열 출력</i><br>");
+    document.write("<a href='https://www.google.com'>구글로 이동</a><br>");
+    </script>
+    <br>여기는 html<br>
+    <script>
+    document.write("여기는 자바스크립트");
+
+    let a = 10;
+    let b = a + 10;
+    document.write("<br>b는 ", b);
+    </script>
+    <br>
+    자바스크립 변수값을 html 태그에 출력<br>
+    b의 값은? <span id="result"></span>입니다
+    <script>
+        document.getElementById("result").textContent = b;
+    </script>
+</body>
+</html>

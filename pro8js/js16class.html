@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function objTest(){
+            // alert("a");
+            let str = "";
+
+            // 1. new Object()를 이용한 객체 생성
+            let person1 = new Object();
+
+            // 속성 : 멤버 필드(변수)
+            person1.irum = "한가해";
+            person1.nai = 33;
+            person1.juso = "서울";
+
+            // 속성 : 멤버 메소드
+            person1.info = function(){
+                return `${this.irum}님의 나이는 ${this.nai}살, 사는 곳은 ${this.juso}`;
+            }
+
+            str += "<h3>1. new Object()를 사용</h3>";
+            str += `이름 : ${person1.irum}<br>`;   // 멤버 필드 호출
+            str += `나이 : ${person1.nai}<br>`;
+            str += `주소 : ${person1.juso}<br>`;
+            str += `info 메소드 : ${person1.info()}<br>`;
+
+            // 2. 생성자 함수를 이용한 객체 생성
+            function Person(irum, nai, juso){
+                // 멤버 필드
+                this.irum = irum;
+                this.nai = nai;
+                this.juso = juso;
+
+                // 메소드
+                this.info = function(){
+                    return `${this.irum}씨의 나이는 ${this.nai}세, 사는 곳? ${this.juso}`;
+                }
+            }
+
+            let person2 = new Person("김치국", 30, "평택");
+            str += "<hr>";
+            str += "<h3>2. 생성자를 사용</h3>";
+            str += `이름 : ${person2.irum}<br>`;   // 멤버 필드 호출
+            str += `나이 : ${person2.nai}<br>`;
+            str += `주소 : ${person2.juso}<br>`;
+            str += `info 메소드 : ${person2.info()}<br>`;
+
+            // 3. 개체 Literal 이용한 객체 생성
+            let person3 = {
+                // 멤버 필드
+                irum:"한송이",
+                nai:27,
+                juso:"수원",
+
+                //멤버 메소드
+                info:function(){
+                    return `${this.irum}님의 나이:${this.nai}세, 사는 곳:${this.juso}`;
+                }
+            }
+
+            str += "<hr>";
+            str += "<h3>3. 개체 Literal 사용</h3>";
+            str += `이름 : ${person3.irum}<br>`;   // 멤버 필드 호출
+            str += `나이 : ${person3.nai}<br>`;
+            str += `주소 : ${person3.juso}<br>`;
+            str += `info 메소드 : ${person3.info()}<br>`;
+
+            document.getElementById("disp").innerHTML = str;
+        }
+    </script>
+</head>
+<body>
+<pre>
+클래스는 객체를 만들기 위한 설계도이고, 객체는 클래스를 이용해 실제로 생성한 데이터와 기능의 묶음이다.
+자바스크립트에서 class와 객체를 가장 쉽게 이해하는 방법은 "설계도와 실제 물건"으로 보는 것이다.
+    class  → 설계도
+    object → 설계도로 만든 실제 대상
+</pre>
+<h2>javascript 객체 생성 방법 중 주요 3가지</h2>
+<button onclick="objTest()">객체 생성 및 출력</button>
+<br>
+<div id="disp"></div>
+</body>
+</html>

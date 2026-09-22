@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+    <script>
+    window.onload = () => {
+        document.querySelector("#btn1").onclick = funcAsync;
+        document.querySelector("#btn2").onclick = funcAxios;
+    }
+
+    // 공통 출력 함수
+    function showSangpums(data, title){
+        let output = `<h3>${title}</h3>`;
+        output += `<table border="1">`;
+        output += `<tr><th>코드</th><th>품명</th><th>수량</th><th>단가</th><th>금액</th></tr>`;    
+
+        let total = 0;
+
+        data.forEach(item => {
+            let price = item.su * item.dan;
+            total += price;
+            output += `
+                <tr>
+                    <td>${item.code}</td>
+                    <td>${item.sang}</td>
+                    <td>${item.su}</td>
+                    <td>${item.dan.toLocaleString()}</td>
+                    <td>${price.toLocaleString()}</td>
+                </tr>
+            `;
+        });
+
+        output += `
+            <tr>
+                <td colspan="4">총 금액 : </td>
+                <td><b>${total.toLocaleString()}원</b></td>
+            </tr>
+        `;
+        output += `</table>`;
+        
+        document.querySelector("#result").innerHTML = output;
+    }
+
+    // 1. fetch then
+    async function funcAsync(){
+        const result = document.querySelector("#result");
+        result.innerHTML = "데이터를 불러 오는 중...";
+
+        try{
+            const response = await fetch("sangpum.py");
+
+            if(!response.ok){
+                throw new Error(`HTTP 오류 : ${response.status}`);
+            }
+
+            const data = await response.json();  // JSON 객체화
+            if(!Array.isArray(data)){  // isArray : 배열 여부 확인
+                throw new Error(`JSON 데이터가 배열이 아니네요`);
+            }
+
+            // 재고가 있는 상품만 선택
+            const stockData = data.filter(item => item.su > 0);
+
+            // 코드 순으로 오름 차순 정렬
+            stockData.sort((a, b) => a.code - b.code);
+            console.log("정렬된 결과 : ", stockData);
+
+            // 출력 함수 호출
+            showSangpums(stockData, "ASYNC FETCH 결과");
+        }catch(error){
+            result.innerHTML = "오류 발생 : " + error.message;
+        }finally{
+            console.log("fetch 작업 종료");
+        }
+    }
+
+    // Axios : json 변환 자동 발생
+    async function funcAxios(){
+        const result = document.querySelector("#result");
+        result.innerHTML = "데이터를 불러 오는 중...";
+
+        try{
+            const response = await axios.get(
+                "sangpum.py",
+                {
+                    timeout:3000  // 3초 안에 응답이 오지 않으면 요청을 실패처리해~~
+                }
+            );
+            
+            console.log("axios response:", response);
+            const data = response.data;
+
+            if(!Array.isArray(data)){  // isArray : 배열 여부 확인
+                throw new Error(`JSON 데이터가 배열이 아니네요`);
+            }
+
+            // 재고가 있는 상품만 선택
+            const stockData = data.filter(item => item.su > 0);
+
+            // 출력 함수 호출
+            showSangpums(stockData, "AXIOS 결과");
+        }catch(error){
+            result.innerHTML = "Axios 오류 발생 : " + error.message;
+        }finally{
+            console.log("fetch 작업 종료");
+        }
+    }
+    </script>
+</head>
+<body>
+<h3>보다 실무적인 AJAX 처리</h3>
+<button id="btn1">1번 async fetch</button>
+<button id="btn2">2번 axios library</button>
+<hr>
+<div id="result"></div> 
+</body>
+</html>

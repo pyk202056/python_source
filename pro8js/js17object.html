@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 주문 객체 : Object Literal 이용한 객체 생성
+        const order = {
+            orderNo : "a1001",
+
+            customer:{
+                name:"고릴라",
+                tel:"010-111-1111"
+            },
+
+            products:[
+                {name:"노트북", price:2345000, qty:1},
+                {name:"말랑이", price:5000, qty:3},
+                {name:"컵라면", price:3000, qty:5}
+            ],
+
+            // 총 주문 금액 계산
+            getTotal:function(){
+                let total = 0;
+                this.products.forEach(pro => {
+                    total += pro.price * pro.qty;
+                });
+                return total;
+            }
+        };
+
+        function showOrder(){
+            let str = "";
+            str += `<h3>주문 번호 : ${order.orderNo}</h3>`;
+            str += `고객명 : ${order.customer.name}<br>`;
+            str += `고객전화 : ${order.customer.tel}<br>`;
+            str += "<br><b>상품 목록</b>";
+            order.products.forEach(product => {
+                str += `
+                    <br>상품명 : ${product.name}<br>
+                    가격 : ${product.price}<br>
+                    수량 : ${product.qty}<br>
+                    금액 : ${(product.price * product.qty).toLocaleString()}원<br>
+                `;
+            });
+
+            str += `<h3>총 주문 금액 : ${order.getTotal().toLocaleString()}원</h3>`;
+            document.querySelector("#result").innerHTML = str;
+        }
+    </script>
+</head>
+<body>
+<h3>객체를 만드는 가장 큰 이유는 서로 관련 있는 여러 데이터와 기능을 하나로 묶어서 관리하기</h3>
+<h2>쇼핑몰 주문 정보</h2>
+<button onclick="showOrder()">주문 정보 보기</button>
+<br>
+<div id="result"></div>
+</body>
+</html>

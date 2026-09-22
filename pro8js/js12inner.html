@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom</title>
+    <script>
+        function func1(){
+            //alert("a");
+
+            // innerHTML, innerHTML로 특정 Element 값 얻기
+            //let str1 = document.getElementsByName("t1")[0].innerHTML;  // body 영역내의 특정 name을 선택
+            //let str1 = document.getElementById("test1").innerHTML;     // body 영역내의 특정 id를 선택
+            //console.log(str1);
+            //let str1 =  document.querySelector("#test1").innerHTML;   // body 영역내의 특정 id를 셀렉터로 선택
+            let str1 =  document.querySelector("#test1").innerText;     // HTML과 달리 tag없이 순수 text만 선택됨
+            
+            // 값을 특정 Element에 적용
+            document.querySelector("#show1").innerHTML = str1;
+
+            let tag1 = "이름 : <input type='text' name='irum'>";
+            let tag2 = "나이 : <input type='text' name='nai'>";
+            document.querySelector("#test1").innerHTML = tag1 + "<br>" + tag2;
+        }
+
+        function func2(){
+            //alert("b");
+            let str2 = document.querySelector("#test2").innerHTML;
+            console.log(str2);
+            document.querySelector("#show2").innerHTML = str2;
+            document.querySelector("#show3").innerText = str2;
+        }
+    </script>
+</head>
+<body>
+<pre>
+DOM : 실행 주 tag의 생성,수정,삭제 또는 데이터 참조,추가,수정,삭제  처리 가능
+element.innerText : element 안의 text 값들을 대상으로 처리
+element.innerHTML : element 안의 text 뿐만 아니라 HTML이나 XML을 대상으로 처리
+</pre>
+<hr>
+<div id="test1" name="t1"><h2>innerHTML 연습</h2></div>
+<div id="test2"><h1>안녕하세요</h1></div>
+<button onclick="func1()">처리1</button>
+<button onclick="func2()">처리2</button>
+<br>
+<div id="show1">출력 1</div>
+<div id="show2">출력 2</div>
+<div id="show3">출력 3</div>
+</body>
+</html>

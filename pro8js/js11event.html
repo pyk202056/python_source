@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function colorFunc(){
+            //alert("a");
+            // 배경색
+            //document.body.style.backgroundColor = "yellow";
+            document.body.style.backgroundColor = document.frm.bc.value;
+            
+            // 글자색
+            document.body.style.color = document.frm.tc.value;
+        }
+    </script>
+</head>
+<body>
+    <h2>이벤트 연습 : 색 변경</h2>
+    <form name="frm">
+        <table border="1" width="200">
+            <tr>
+                <td colspan="2">색상 선택</td>
+            </tr>
+            <tr>
+                <td><b>배경색 : </b></td>
+                <td>
+                    <select name="bc">
+                        <option value="black">검정</option>
+                        <option value="blue">파랑</option>
+                        <option value="green">초록</option>
+                        <option value="white" selected>하양</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><b>글자색 : </b></td>
+                <td>
+                    <select name="tc">
+                        <option value="black" selected>검정</option>
+                        <option value="blue">파랑</option>
+                        <option value="green">초록</option>
+                        <option value="white">하양</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type="button" value="변 경" onclick="colorFunc()" >
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

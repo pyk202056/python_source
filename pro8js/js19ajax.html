@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = () => {
+            document.querySelector("#btn1").onclick = funcJson;
+            document.querySelector("#btn2").onclick = funcCsv;
+        }
+
+        function funcJson(){
+            let xhr = new XMLHttpRequest();
+            
+            xhr.open("GET", "sangpum.json", true);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4 && xhr.status === 200){
+                    //let data = xhr.responseText;
+                    //alert(typeof(data)); // string : js 객체 모양을 가진 문자열
+                    let data = JSON.parse(xhr.responseText);
+                    //alert(typeof(data));   // object : js 객체
+
+                    let output = "JSON 반환 결과<br>";
+                    output += "코드&nbsp;&nbsp;&nbsp;품명<br>";
+                    for(let i=0; i < data.length; i++){
+                        output += data[i].code + "&nbsp;&nbsp;&nbsp;" + data[i].sang + "<br>";
+                    }
+                    document.querySelector("#result").innerHTML = output;
+                }else{
+                    document.querySelector("#result").innerText = "로딩 실패:" + xhr.status;
+                }
+            }
+            xhr.send()
+        }
+        
+        function funcCsv(){
+            let xhr = new XMLHttpRequest();
+            
+            xhr.open("GET", "sangpum.csv", true);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4 && xhr.status === 200){
+                    let data = xhr.responseText.trim();   // 문자열 앞 뒤 공백 제거
+                    // alert(data);
+                    let lines = data.split("\n");   // 행 단위로 분리
+
+                    let output = "CSV 반환 결과<br>";
+
+                    for(let i=0; i < lines.length; i++){
+                        if(lines[i] !== ""){   // 10,핸드크림
+                            let parts = lines[i].split(",");
+                            let code = parts[0];
+                            let sang = parts[1];
+                            output += "코드는 " + code + ", 상품명은 " + sang + "<br>";
+                        }
+                    }
+                    document.querySelector("#result").innerHTML = output;
+                }else{
+                    document.querySelector("#result").innerText = "로딩 실패:" + xhr.status;
+                }
+            }
+            xhr.send()
+        }
+
+
+    </script>
+</head>
+<body>
+    <h3>Ajax 전통적 방법으로 처리</h3>
+    <button id="btn1">JSON 문서 읽기</button>
+    <button id="btn2">CSV 문서 읽기</button>
+    <hr>
+    <div id="result">출력</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function func(){
+            // 이벤트 처리용 함수 (event handler function)
+            let datetime = "2026-9-18";
+            let arrData = datetime.split("-");
+            console.log(`${arrData[0]}년 ${arrData[1]}월 ${arrData[2]}일`);
+        }
+    </script>
+</head>
+<body> 
+    <h3>* 이벤트(사용자의 동작이나 브라우저에서 발생하는 특정 상황) 처리 *</h3>
+    예:버튼 클릭, 마우스 이동, 키보드 입력, 값 변경, 페이지 로딩, form 자료 전송...<br>
+    <a href="https://www.naver.com">네이버 : click 이벤트 발생</a><br>
+    <a href="javascript:func()">이벤트 처리 함수 호출1 (이벤트 핸들러 사용안함)</a><br>
+    <br>이벤트 핸들러는 on이벤트종류=핸들러함수()
+    <br>
+    <a href="javascript:onclick=func()">이벤트 처리 함수 호출2 (이벤트 핸들러 사용)</a><br>
+    <br>
+    <button onclick="func()">이벤트 처리 함수 호출3</button>
+    <br>
+    <input type="button" value="이벤트 처리 함수 호출4" onclick="func()" />
+</body>
+</html>
