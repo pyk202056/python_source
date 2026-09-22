@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리 고객 출력</title>
+    <style>
+        .man{color: yellow;}
+        .woman{color: blue;}
+    </style>
+
+    <script>
+        window.onload = function () {
+            document.getElementById("btnShow").onclick = showCustomers;
+        };
+
+        async function showCustomers() {
+            const id = document.getElementById("userid").value;
+            const password = document.getElementById("password").value;
+            const result = document.getElementById("result");
+
+            if (id !== "python" || password !== "123") {
+                result.innerHTML = "아이디 또는 비밀번호가 틀렸습니다.";
+                return;
+            }
+
+            try {
+                const response = await fetch("gogekdata.json", {
+                    method: "GET"
+                });
+
+                if (!response.ok) {
+                    throw new Error("HTTP 오류: " + response.status);
+                }
+
+                const customers = await response.json();
+
+                let output = `
+                    <table>
+                        <tr><th>고객명</th><th>고객전화</th><th>성별</th></tr>
+                `;
+
+                customers.forEach(function (customer) {
+                    const colorClass =
+                        customer.gender === "남" ? "man" : "woman";
+
+                    output += `
+                        <tr>
+                            <td class="${colorClass}">${customer.name}</td>
+                            <td>${customer.tel}</td>
+                            <td>${customer.gender}</td>
+                        </tr>
+                    `;
+                });
+                output += "</table>";
+                result.innerHTML = output;
+            } catch (error) {
+                result.innerHTML = "에러 발생 : " + error;
+            }
+        }
+    </script>
+</head>
+<body>
+<h2>직원정보 입력</h2>
+아이디 : <input type="text" id="userid"><br>
+비밀번호 : <input type="password" id="password"><br>
+<button id="btnShow">관리 고객 출력</button>
+<br>
+<b>id: python / pwd: 123</b>
+<div id="result"></div>
+</body>
+</html>
