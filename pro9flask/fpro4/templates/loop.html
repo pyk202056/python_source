@@ -1,0 +1,13 @@
+{% extends "base.html" %}  <!-- 상속 -->
+
+{% block title %}반복문{% endblock %}
+
+{% block content %}
+    <h3>반복문 예제</h3>
+    <ul>
+        {% for user in users %}
+        <li>{{loop.index}}번째 사람 : {{user}}</li>
+        {% endfor %}
+    </ul>
+    <p>총 인원 수 : {{users | length}}</p>
+{% endblock %}
