@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>미니 방명록</title>
+</head>
+<body>
+  <h2>글 수정</h2>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+        {% for m in messages %}
+          <li>{{ m }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <p>글 번호: <b>{{ row.id }}</b> / 작성일: {{ row.created_at }}</p>
+
+  <form action="{{ url_for('edit_save', gid=row.id) }}" method="post">
+    <p>이름: <input name="name" value="{{ row.name }}"></p>
+    <p>내용:<br>
+      <textarea name="message" rows="5" cols="50">{{ row.message }}</textarea>
+    </p>
+    <button type="submit">저장</button>
+    <a href="{{ url_for('show_main') }}">취소</a>
+  </form>
+</body>
+</html>

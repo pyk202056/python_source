@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>직원 로그인</h3>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for m in messages %}
+                    <li>{{m}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{url_for('login_post')}}" method="post">
+        <p>직원 번호 : <input name="jikwonno"></p>
+        <p>직원 이름 : <input name="jikwonname"></p>
+        <button type="submit">로그인</button>
+    </form>
+</body>
+</html>

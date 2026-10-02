@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>상품 목록</h2>
+<ul>
+    {% for p in products %}
+    <li>
+        {{p.name}} ( {{p.price}} 원)
+        <a href="/add/{{p.id}}">[ 장바구니에 담기 ]</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

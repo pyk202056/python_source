@@ -17,6 +17,15 @@ def get_result():
     age = age + "살"
     return render_template("get_result.html", name=name, age=age)
 
+@app.route("/post_form")
+def post_form():
+    return render_template("post_form.html");
+
+@app.route("/post_result", methods=['POST'])
+def post_result():
+    name = request.form.get("username")  # post방식 요청 자료 받기
+    email = request.form.get("email")     
+    return render_template("post_result.html", name=name, email=email)
 
 
 if __name__ == '__main__':

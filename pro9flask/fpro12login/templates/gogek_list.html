@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>고객 목록</h3>
+    <p>담당 직원 정보 : 직원번호-{{empno}} 직원이름-{{empname}}</p>
+
+    <table border="1">
+        <tr>
+            <th>고객번호</th><th>고객이름</th><th>고객전화</th>
+        </tr>
+        {% for r in rows %}
+        <tr>
+            <td>{{r.gogekno}}</td>
+            <td>{{r.gogekname}}</td>
+            <td>{{r.gogektel}}</td>
+        </tr>
+        {% else %}  <!-- jinja2는 for문에 else 가능 -->
+        <tr>
+            <td colspan="3">담당 고객이 없습니다</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{url_for('jikwon_list')}}">직원 목록으로</a>
+</body>
+</html>

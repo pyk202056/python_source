@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>미니 방명록</title>
+</head>
+<body>
+  <h2>미니 방명록</h2>
+  {% with messages = get_flashed_messages() %}  <!-- flash("수정할 글을 찾을 수 없음.")을 읽음 -->
+    {% if messages %}
+      <ul>
+        {% for m in messages %}
+          <li>{{ m }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <a href="{{ url_for('add_form') }}">[글 추가]</a><br>
+
+  <form action="{{ url_for('show_main') }}" method="get">
+    <input name="q" value="{{ q }}" placeholder="이름 또는 내용 검색">
+    <button type="submit">검색</button>
+    <a href="{{ url_for('show_main') }}">검색 초기화</a>
+  </form>
+  <hr>
+  <table border="1" cellpadding="6" cellspacing="0">
+    <tr>
+        <th>id</th><th>name</th><th>message</th><th>created_at</th><th>관리</th>
+    </tr>
+    {% for r in rows %}
+    <tr>
+        <td>{{ r.id }}</td>
+        <td>{{ r.name }}</td>
+        <td>{{ r.message }}</td>
+        <td>{{ r.created_at }}</td>
+        <td>
+            <a href="{{ url_for('edit_form', gid=r.id) }}">수정</a>
+
+            <form action="{{ url_for('delete_row', gid=r.id) }}"
+                method="post" style="display:inline;"
+                onsubmit="return confirm('정말 삭제할까요?');">
+                <button type="submit">삭제</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

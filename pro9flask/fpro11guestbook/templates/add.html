@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>미니 방명록</title>
+</head>
+<body>
+<h2>글 추가</h2>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for m in messages %}
+            <li>{{ m }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endwith %}
+
+  <form action="{{ url_for('add_save') }}" method="post">
+    <p>이름: <input name="name"></p>
+    <p>내용:<br>
+        <textarea name="message" rows="5" cols="50"></textarea>
+    </p>
+    <button type="submit">저장</button>
+    <a href="{{ url_for('show_main') }}">취소</a>
+  </form>
+</body>
+</html>
