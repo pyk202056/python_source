@@ -1,0 +1,4 @@
+body {margin: 24px;}
+button {padding: 8px 12px; margin-top: 8px;}
+#result {margin-top: 16px; padding: 12px; border: 1px dotted #ddd;}
+.error {color: #b00020;}
