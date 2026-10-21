@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Chart.js 라이브러리 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h3>아이리스 정보</h3> 
+    <div>
+        {{irisdata | safe}}
+    </div>
+
+    <h3>꽃 종류별 건수 파이 차트(정적)</h3>
+    <div style="width:500px; height:400px;">
+        <canvas id="irisChart"></canvas>
+    </div>
+
+    <script>
+        // py가 전달한 데이터
+        const labels = {{labels | tojson}};
+        const values = {{values | tojson}};
+
+        const ctx = document.getElementById('irisChart');
+        new Chart(ctx, {
+            type:'pie',
+            data:{
+                labels:labels,
+                datasets:[{
+                    data:values,
+                    backgroundColor:[
+                        'steelblue','orange','lightgreen'
+                    ]
+                }]
+            },
+            options:{
+                responsive:true,
+                maintainAspectRatio:false,
+                
+                plugins:{
+                    legend:{
+                        position:'bottom'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

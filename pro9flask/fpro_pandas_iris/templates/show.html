@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>아이리스 정보</h3> 
+    <div>
+        {{irisdata | safe}}
+    </div>
+
+    <h3>꽃 종류별 건수 파이 차트(정적)</h3>
+    <img src="{{url_for('static', filename=piechart)}}" 
+                alt="iris pie chart" style="width:50%">
+</body>
+</html>
