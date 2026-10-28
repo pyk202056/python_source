@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import scipy.stats as stats
 
-# [one-sample t 검정 : 문제1]  
+# [one-sample t 검정 : 문제1]
 # 영사기( 프로젝터 )에 사용되는 구형 백열전구의 수명은 250 시간이라고 알려졌다. 
 # 한국 연구소에서 수명이 50 시간 더 긴 새로운 백열전구를 개발하였다고 발표하였다. 
 # 연구소의 발표결과가 맞는지 새로 개발된 백열전구를 임의로 수집하여 수명 시간 관련 자료를 얻었다. 
@@ -30,7 +30,7 @@ print("----------------")
 # [one-sample t 검정 : 문제2] 
 # 국내에서 생산된 대다수의 노트북 평균 사용 시간이 5.2 시간으로 파악되었다. 
 # A회사에서 생산된 노트북 평균시간과 차이가 있는지를 검정하기 위해서 
-# A회사 노트북 150대를 랜덤하게 선정하여 검정을 실시한다.  
+# A회사 노트북 150대를 랜덤하게 선정하여 검정을 실시한다.
 # 실습 파일 : one_sample.csv
 # 참고 : time에 공백을 제거할 땐 ***.time.replace("     ", ""),
 #         null인 관찰값은 제거.
@@ -59,11 +59,11 @@ print("time에 대한 shapiro result : ", result2)  # pvalue=0.72423 > 0.05이�
 t_result2 = stats.ttest_1samp(data2['time'], popmean=5.2)
 print("t_result2 : ", t_result2) # statistic=3.946059566, pvalue=0.000141
 # 해석 : pvalue=0.000141 < 0.05 귀무 기각
-# A회사 노트북 평균 사용은 5.2시간이 아니다. 
+# A회사 노트북 평균 사용은 5.2시간이 아니다.
 
 
 print("----------------")
-# [one-sample t 검정 : 문제3] 
+# [one-sample t 검정 : 문제3]
 # https://www.price.go.kr/tprice/portal/main/main.do 에서 
 # 메뉴 중  가격동향 -> 개인서비스요금 -> 조회유형:지역별, 품목:미용 자료(엑셀)를 파일로 받아 미용 요금을 얻도록 하자. 
 # 정부에서는 전국 평균 미용 요금이 15000원이라고 발표하였다. 이 발표가 맞는지 검정하시오. (월별)
@@ -71,7 +71,7 @@ print("----------------")
 # 문제 : 정부의 전국 평균 미용 요금이 15000원이라고 발표했는데 실제 데이터와 비교 검정
 # 귀무 : 전국 평균 미용 요금은 15000원이다. (발표가 맞다)
 # 대립 : 전국 평균 미용 요금은 15000원이 아니다. (발표가 틀리다)
-# pip install xlrd
+# pip install xlrd 
 
 data3 = pd.read_excel('개인서비스지역별_동향.xls')
 print(data3.head(3))
