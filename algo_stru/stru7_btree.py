@@ -38,7 +38,7 @@ def postOrder(node):
     print(node, end=' ')
 
 print('전위 순회 결과 : ')
-preOrder('A')
+preOrder('A')     
 print('\n중위 순회 결과 : ')
 inOrder('A')   # BST(Binary Search Tree) 오름차순 정렬 가능
 print('\n후위 순회 결과 : ')
