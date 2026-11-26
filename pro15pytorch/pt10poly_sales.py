@@ -218,3 +218,23 @@ plt.ylabel('판매량')
 plt.legend()
 plt.grid()
 plt.show()
+
+
+# 학습된 계수 확인
+# PyTorch nn.Linear의 weight, bias 확인
+# weight shape: 선형회귀: (1, 1),  다항회귀: (1, 2)
+linear_w = linear_model.linear.weight.detach().numpy()
+linear_b = linear_model.linear.bias.detach().numpy()
+
+poly_w = poly_model.linear.weight.detach().numpy()
+poly_b = poly_model.linear.bias.detach().numpy()
+
+print("\n선형회귀 식 - scaled 기준")
+print(f"y_scaled = {linear_w[0][0]:.3f} * x_scaled + {linear_b[0]:.3f}")
+
+print("\n다항회귀 식 - scaled 기준")
+print(
+    f"y_scaled = {poly_w[0][1]:.3f} * x_scaled^2 "
+    f"+ {poly_w[0][0]:.3f} * x_scaled "
+    f"+ {poly_b[0]:.3f}"
+)
